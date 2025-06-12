@@ -1,29 +1,24 @@
-import React from "react";
+import * as React from "react";
 import { convexQuery } from "@convex-dev/react-query";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { api } from "../../convex/_generated/api";
+import { EconomicCalendar } from "react-ts-tradingview-widgets";
 import { Layout } from "../components/layout";
-// import { MarketOverview } from "react-ts-tradingview-widgets";
 
-export const Route = createFileRoute("/")({
-  component: Home,
+export const Route = createFileRoute("/calendar")({
+  component: Calendar,
 });
 
-function Home() {
+function Calendar() {
   const { data } = useSuspenseQuery(convexQuery(api.tasks.get, {}));
 
   return (
     <Layout>
+      <EconomicCalendar colorTheme="dark" height={1200} width="100%" />
       {data.map(({ _id, text }) => (
         <div key={_id}>{text}</div>
       ))}
-      {/* <MarketOverview
-        colorTheme="dark"
-        height={1200}
-        width="100%"
-        showFloatingTooltip
-      ></MarketOverview> */}
     </Layout>
   );
 }

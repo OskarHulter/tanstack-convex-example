@@ -11,13 +11,69 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SectorsImport } from './routes/sectors'
+import { Route as MarketsImport } from './routes/markets'
+import { Route as HeatmapImport } from './routes/heatmap'
+import { Route as FundamentalsImport } from './routes/fundamentals'
+import { Route as CryptosImport } from './routes/cryptos'
+import { Route as ChartImport } from './routes/chart'
+import { Route as CalendarImport } from './routes/calendar'
 import { Route as IndexImport } from './routes/index'
+import { Route as CryptoListImport } from './routes/crypto/list'
 
 // Create/Update Routes
+
+const SectorsRoute = SectorsImport.update({
+  id: '/sectors',
+  path: '/sectors',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MarketsRoute = MarketsImport.update({
+  id: '/markets',
+  path: '/markets',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HeatmapRoute = HeatmapImport.update({
+  id: '/heatmap',
+  path: '/heatmap',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FundamentalsRoute = FundamentalsImport.update({
+  id: '/fundamentals',
+  path: '/fundamentals',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CryptosRoute = CryptosImport.update({
+  id: '/cryptos',
+  path: '/cryptos',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChartRoute = ChartImport.update({
+  id: '/chart',
+  path: '/chart',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CalendarRoute = CalendarImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CryptoListRoute = CryptoListImport.update({
+  id: '/crypto/list',
+  path: '/crypto/list',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +88,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarImport
+      parentRoute: typeof rootRoute
+    }
+    '/chart': {
+      id: '/chart'
+      path: '/chart'
+      fullPath: '/chart'
+      preLoaderRoute: typeof ChartImport
+      parentRoute: typeof rootRoute
+    }
+    '/cryptos': {
+      id: '/cryptos'
+      path: '/cryptos'
+      fullPath: '/cryptos'
+      preLoaderRoute: typeof CryptosImport
+      parentRoute: typeof rootRoute
+    }
+    '/fundamentals': {
+      id: '/fundamentals'
+      path: '/fundamentals'
+      fullPath: '/fundamentals'
+      preLoaderRoute: typeof FundamentalsImport
+      parentRoute: typeof rootRoute
+    }
+    '/heatmap': {
+      id: '/heatmap'
+      path: '/heatmap'
+      fullPath: '/heatmap'
+      preLoaderRoute: typeof HeatmapImport
+      parentRoute: typeof rootRoute
+    }
+    '/markets': {
+      id: '/markets'
+      path: '/markets'
+      fullPath: '/markets'
+      preLoaderRoute: typeof MarketsImport
+      parentRoute: typeof rootRoute
+    }
+    '/sectors': {
+      id: '/sectors'
+      path: '/sectors'
+      fullPath: '/sectors'
+      preLoaderRoute: typeof SectorsImport
+      parentRoute: typeof rootRoute
+    }
+    '/crypto/list': {
+      id: '/crypto/list'
+      path: '/crypto/list'
+      fullPath: '/crypto/list'
+      preLoaderRoute: typeof CryptoListImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +151,100 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
+  '/chart': typeof ChartRoute
+  '/cryptos': typeof CryptosRoute
+  '/fundamentals': typeof FundamentalsRoute
+  '/heatmap': typeof HeatmapRoute
+  '/markets': typeof MarketsRoute
+  '/sectors': typeof SectorsRoute
+  '/crypto/list': typeof CryptoListRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
+  '/chart': typeof ChartRoute
+  '/cryptos': typeof CryptosRoute
+  '/fundamentals': typeof FundamentalsRoute
+  '/heatmap': typeof HeatmapRoute
+  '/markets': typeof MarketsRoute
+  '/sectors': typeof SectorsRoute
+  '/crypto/list': typeof CryptoListRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
+  '/chart': typeof ChartRoute
+  '/cryptos': typeof CryptosRoute
+  '/fundamentals': typeof FundamentalsRoute
+  '/heatmap': typeof HeatmapRoute
+  '/markets': typeof MarketsRoute
+  '/sectors': typeof SectorsRoute
+  '/crypto/list': typeof CryptoListRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/calendar'
+    | '/chart'
+    | '/cryptos'
+    | '/fundamentals'
+    | '/heatmap'
+    | '/markets'
+    | '/sectors'
+    | '/crypto/list'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/calendar'
+    | '/chart'
+    | '/cryptos'
+    | '/fundamentals'
+    | '/heatmap'
+    | '/markets'
+    | '/sectors'
+    | '/crypto/list'
+  id:
+    | '__root__'
+    | '/'
+    | '/calendar'
+    | '/chart'
+    | '/cryptos'
+    | '/fundamentals'
+    | '/heatmap'
+    | '/markets'
+    | '/sectors'
+    | '/crypto/list'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalendarRoute: typeof CalendarRoute
+  ChartRoute: typeof ChartRoute
+  CryptosRoute: typeof CryptosRoute
+  FundamentalsRoute: typeof FundamentalsRoute
+  HeatmapRoute: typeof HeatmapRoute
+  MarketsRoute: typeof MarketsRoute
+  SectorsRoute: typeof SectorsRoute
+  CryptoListRoute: typeof CryptoListRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalendarRoute: CalendarRoute,
+  ChartRoute: ChartRoute,
+  CryptosRoute: CryptosRoute,
+  FundamentalsRoute: FundamentalsRoute,
+  HeatmapRoute: HeatmapRoute,
+  MarketsRoute: MarketsRoute,
+  SectorsRoute: SectorsRoute,
+  CryptoListRoute: CryptoListRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +257,43 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/calendar",
+        "/chart",
+        "/cryptos",
+        "/fundamentals",
+        "/heatmap",
+        "/markets",
+        "/sectors",
+        "/crypto/list"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/calendar": {
+      "filePath": "calendar.tsx"
+    },
+    "/chart": {
+      "filePath": "chart.tsx"
+    },
+    "/cryptos": {
+      "filePath": "cryptos.tsx"
+    },
+    "/fundamentals": {
+      "filePath": "fundamentals.tsx"
+    },
+    "/heatmap": {
+      "filePath": "heatmap.tsx"
+    },
+    "/markets": {
+      "filePath": "markets.tsx"
+    },
+    "/sectors": {
+      "filePath": "sectors.tsx"
+    },
+    "/crypto/list": {
+      "filePath": "crypto/list.tsx"
     }
   }
 }
