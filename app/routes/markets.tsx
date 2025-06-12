@@ -8,9 +8,15 @@ export const Route = createFileRoute("/markets")({
 });
 
 function RouteComponent() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  React.useEffect(() => {
+    setIsLoaded(true);
+  }, []);
   return (
     <Layout>
-      <MarketData colorTheme="dark" width="100%" height={1200}></MarketData>
+      {isLoaded ? (
+        <MarketData colorTheme="dark" width="100%" height={1200}></MarketData>
+      ) : null}
     </Layout>
   );
 }

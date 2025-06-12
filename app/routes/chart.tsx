@@ -11,6 +11,10 @@ export const Route = createFileRoute("/chart")({
 });
 
 function RouteComponent() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  React.useEffect(() => {
+    setIsLoaded(true);
+  }, []);
   const { data } = useSuspenseQuery(convexQuery(api.tasks.get, {}));
 
   return (
@@ -18,7 +22,7 @@ function RouteComponent() {
       {data.map(({ _id, text }) => (
         <div key={_id}>{text}</div>
       ))}
-      <AdvancedRealTimeChart theme="dark" autosize />
+      {isLoaded ? <AdvancedRealTimeChart theme="dark" autosize /> : null}
     </Layout>
   );
 }

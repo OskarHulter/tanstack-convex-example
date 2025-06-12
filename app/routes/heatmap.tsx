@@ -11,15 +11,26 @@ export const Route = createFileRoute("/heatmap")({
 
 function Heatmap() {
   const { data } = useSuspenseQuery(convexQuery(api.tasks.get, {}));
-
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  React.useEffect(() => {
+    setIsLoaded(true);
+  }, []);
   return (
     <Layout>
-      <StockHeatmap colorTheme="dark" autoSize></StockHeatmap>
-      {data.map(({ _id, text }) => (
-        <div key={_id}>{text}</div>
-      ))}
+      {isLoaded ? (
+        <>
+          <StockHeatmap colorTheme="dark" autoSize height={600}></StockHeatmap>
+          {data.map(({ _id, text }) => (
+            <div key={_id}>{text}</div>
+          ))}
 
-      <CryptoCoinsHeatmap colorTheme="dark" autoSize></CryptoCoinsHeatmap>
+          <CryptoCoinsHeatmap
+            colorTheme="dark"
+            autoSize
+            height={600}
+          ></CryptoCoinsHeatmap>
+        </>
+      ) : null}
     </Layout>
   );
 }
